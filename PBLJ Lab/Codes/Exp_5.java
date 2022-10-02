@@ -1,57 +1,48 @@
+package exp.five;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-public class Card implements Comparable<Card> {
-	private char symbol;
-	private int number;
+public class Main {
 
-	public Card() {}
+	public static void main(String[] args) {
+		Set<Integer> s1 = new HashSet<Integer>();
+		s1.add(4);
+		s1.add(2);
+		s1.add(1);
+		s1.add(1);
+		s1.add(5);
 
-	public Card(char symbol, int number) {
-		super();
-		this.symbol = symbol;
-		this.number = number;
-	}
+		Integer[] arr = { 7, 1, 2, 3, 1, 5 };
+		Set<Integer> s2 = new HashSet<Integer>();
+		s2.addAll(Arrays.asList(arr));
 
-	public char getSymbol() {
-		return symbol;
-	}
+		System.out.println("s1: " + s1);
+		System.out.println("s2: " + s2);
 
-	public void setSymbol(char symbol) {
-		this.symbol = symbol;
-	}
+		System.out.println("\ns1 == s2: " + s1.equals(s2));
 
-	public int getNumber() {
-		return number;
-	}
+		Set<Integer> union = new HashSet<Integer>(s1);
+		union.addAll(s2);
+		System.out.println("\nUnion of s1 & s2: " + union);
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
+		System.out.println("\nRemove 2 from set s1.");
+		s1.remove(2);
+		System.out.println("s1: " + s1);
 
-	@Override
-	public String toString() {
-		return "Card [symbol=" + symbol + ", number=" + number + "]";
-	}
-
-	@Override
-	public int compareTo(Card o) {
-		if (this.symbol < o.symbol) return -1;
-		else if (this.symbol > o.symbol) return 1;
-		else return 1;
-	}
-
-	@Override
-	public int hashCode() {
-		return String.valueOf(symbol).hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Card) {
-			Card card = (Card) obj;
-			return (card.symbol == this.symbol);
-		} else {
-			return false;
+		Iterator newData = s1.iterator();
+		System.out.println("\nPrinting values using Iteratore!");
+		System.out.print("s1: ");
+		while (newData.hasNext()) {
+			System.out.print(newData.next() + " ");
 		}
+
+		System.out.println("\n\nSize of s2: " + s2.size());
+		System.out.println("Clearing elemets from s2!");
+		s2.clear();
+		System.out.println("Whether set2 is empty: " + s2.isEmpty());
 	}
+
 }
